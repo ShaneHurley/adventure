@@ -3,8 +3,20 @@
 //
 
 #include "game.h"
+#include "room.h"
 #include<iostream>
+#include<fstream>
+#include<string>
+
+Game::Game() {
+    std::ifstream rooms("../data/rooms.txt");
+    std::string line;
+
+    while (std::getline(rooms, line)) {
+        Room r(line);
+    }
+}
 
 void Game::play() {
-    std::cout << "Hello, Game!" << std::endl;
+    std::cout << "Hello, word!" << std::endl;
 }

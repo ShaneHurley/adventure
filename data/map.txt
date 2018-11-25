@@ -1,0 +1,4 @@
+Science classroom ::: N ::: Hallway
+Hallway ::: S ::: Science classroom
+Hallway ::: N ::: Cafeteria
+Cafeteria ::: S ::: Hallway

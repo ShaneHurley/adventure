@@ -5,9 +5,11 @@
 #ifndef ADVENTURE_ROOM_H
 #define ADVENTURE_ROOM_H
 
+#include <string>
 
 class Room {
-
+public:
+    Room(std::string def);
 };
 
 

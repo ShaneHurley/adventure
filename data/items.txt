@@ -1,0 +1,5 @@
+blue key ::: A small, blue key.
+red key ::: A red skeleton key.
+flashlight ::: A flashlight, without any batteries
+batteries ::: These look like they might fit into a flashlight
+strong flashlight ::: This flashlight is almost too bright to use
