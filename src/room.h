@@ -6,10 +6,21 @@
 #define ADVENTURE_ROOM_H
 
 #include <string>
+#include <map>
+#include <vector>
+#include <memory>
+#include "item.h"
 
-class Room {
+class Room
+{
 public:
     Room(std::string def);
+
+protected:
+    std::string id;
+    std::string description;
+    std::vector<Item> items;
+    std::map<std::string, std::shared_ptr<Room>> map;
 };
 
 
