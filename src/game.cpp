@@ -2,21 +2,32 @@
 // Created by Shane Hurley on 11/24/18.
 //
 
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <regex>
+
 #include "game.h"
 #include "room.h"
-#include<iostream>
-#include<fstream>
-#include<string>
+
+using namespace std;
 
 Game::Game() {
-    std::ifstream rooms("../data/rooms.txt");
-    std::string line;
+    ifstream roomFile("../data/rooms.txt");
+    string line;
 
-    while (std::getline(rooms, line)) {
-        Room r(line);
+
+    while (getline(roomFile, line)) {
+        Room newRoom(line);
+        rooms.push_back(newRoom);
     }
 }
 
 void Game::play() {
-    std::cout << "Hello, word!" << std::endl;
+
+    for(auto room : rooms)
+    {
+        cout << room.getId() << "\t" ;
+    }
+    cout << "\nHello, word!" << endl;
 }

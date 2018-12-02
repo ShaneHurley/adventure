@@ -16,6 +16,8 @@ class Room
 public:
     Room(std::string def);
 
+    const std::string &getId() const;
+
 protected:
     std::string id;
     std::string description;

@@ -1,14 +1,27 @@
 //
 // Created by Shane Hurley on 11/24/18.
 //
-
+#include <regex>
 #include <iostream>
-
 #include "room.h"
 #include "util.h"
 
-Room::Room(std::string def) {
-    for (auto r : split(def,":::")) {
-        std::cout << "Room: " << r << std::endl;
+
+using namespace std;
+
+Room::Room(std::string line) {
+
+    regex roomPattern(" *(.*) *::: *(.*) *::: *(.*) *");
+    smatch sm1;
+        if(regex_search(line, sm1, roomPattern))
+        {
+            id=sm1[1];
+            description=sm1[2];
+            //TODO fix items
+        }
+
     }
+
+const string &Room::getId() const {
+    return id;
 }

@@ -5,12 +5,17 @@
 #ifndef ADVENTURE_GAME_H
 #define ADVENTURE_GAME_H
 
+#include <vector>
+#include "room.h"
 
 class Game {
 
 public:
     Game();
     void play();
+
+private:
+    std::vector<Room> rooms;
 };
 
 

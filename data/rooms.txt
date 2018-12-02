@@ -1,3 +1,4 @@
 Science classroom ::: There are many lab tables and vials here ::: flashlight
 Hallway ::: This is a hallway, looks like most hallways ::: batteries
-Cafeteria ::: Hmmm I am feeling a little bit hungry, how about you?
+Cafeteria ::: Hmmm I am feeling a little bit hungry, how about you? :::
+//must have ::: even if no item
