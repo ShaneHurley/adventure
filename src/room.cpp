@@ -20,8 +20,31 @@ Room::Room(std::string line) {
             //TODO fix items
         }
 
-    }
+}
+
+Room::Room(std::string id, std::string name, std::string description, std::string items) {
+    this->id = id;
+    this->name = name;
+    this->description = description;
+    // TODO do something with items
+}
 
 const string &Room::getId() const {
     return id;
+}
+
+const string &Room::getDescription() const {
+    if (description.size()) {
+        return description;
+    } else {
+        return name;
+    }
+}
+
+void Room::addExit(std::string direction, std::string id) {
+    map[direction]=id;
+}
+
+const std::string Room::go(std::string dir) {
+    return map[dir];
 }

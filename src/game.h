@@ -5,7 +5,8 @@
 #ifndef ADVENTURE_GAME_H
 #define ADVENTURE_GAME_H
 
-#include <vector>
+#include <map>
+#include <string>
 #include "room.h"
 
 class Game {
@@ -15,7 +16,7 @@ public:
     void play();
 
 private:
-    std::vector<Room> rooms;
+    std::map<std::string, std::unique_ptr<Room>> rooms;
 };
 
 
