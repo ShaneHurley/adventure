@@ -16,6 +16,15 @@ public:
     void play();
 
 private:
+    Room& currentRoom()
+    {
+     return *rooms[location];
+    }
+
+
+    std::map<std::string,std::function<void()>> cmd_list;
+    std::string location;
+
     std::map<std::string, std::unique_ptr<Room>> rooms;
 };
 

@@ -44,22 +44,78 @@ Game::Game() {
     }
 }
 
+vector<string> split(const string& string_to_split, const string regex="\\s+") {
+    std::regex rgx(regex);
+    std::sregex_token_iterator iter(string_to_split.begin(), string_to_split.end(), rgx, -1);
+    return vector<string>(iter, sregex_token_iterator());
+}
+
+vector<string>& filter(vector<string>& source, vector<string> zaplist) {
+    source.erase( std::remove_if( source.begin(), source.end(),
+                                  [zaplist](string w){
+                                      return find(zaplist.cbegin(), zaplist.cend(), w) != zaplist.cend();
+                                  }),
+                  source.end());
+
+    return source;
+}
+
+bool contains(const vector<string>& list, string word) {
+    return find(list.cbegin(), list.cend(), word) != list.cend();
+}
+
+vector<string> parse_command(std::string cmd) {
+    static const vector<string> ignore_words { "a", "of", "the", "by", "carefully", "go" };
+    static const vector<string> join_words { "red", "blue", "rusty", "broken", "glowing", "wooden" };
+
+    bool joining = false;
+    vector<string> result;
+    for (auto word : split(cmd)) {
+        if (!contains(ignore_words, word)) {
+            if (joining) {
+                auto index = result.size() - 1;
+                result[index] = result[index] + " " + word;
+            } else {
+                result.push_back(word);
+            }
+            joining = contains(join_words, word);
+        }
+    }
+
+    return result;
+}
+
 void Game::play() {
-    string location = "start";
     bool play = true;
+    vector<string> cmd;
+
+    cmd_list["north"] = [&]() { location = currentRoom().go("north"); };
+    cmd_list["south"] = [&]() { location = currentRoom().go("south"); };
+    cmd_list["east"] = [&]() { location = currentRoom().go("east"); };
+    cmd_list["west"] = [&]() { location = currentRoom().go("west"); };
+    cmd_list["n"] = [&]() { location = currentRoom().go("north"); };
+    cmd_list["s"] = [&]() { location = currentRoom().go("south"); };
+    cmd_list["e"] = [&]() { location = currentRoom().go("east"); };
+    cmd_list["w"] = [&]() { location = currentRoom().go("west"); };
+    cmd_list["open"] = [&]() { system("say open"); cout << "OPEN!!!\n"; };
+    cmd_list["quit"] = [&]() { play = false; };
+
+    location = "start";
 
     string command;
+    string line;
 
     while (play)
     {
-        Room& room = *rooms[location];
-        cout << room.getDescription()<<endl;
-        cin >> command;
-        std::string newRoomId = room.go(command);
-        if (newRoomId.size()>0)
-        {
-            location=newRoomId;
-        }
+        cout << "You are in " << location << " what do you want to do?" << endl;
+        getline(cin,line);
 
+        cmd = parse_command(line);
+        for (auto cmd_word : cmd_list) {
+            if (contains(cmd, cmd_word.first)) {
+                cmd_word.second();
+                break;
+            }
+        }
     }
 }
