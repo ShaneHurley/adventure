@@ -15,6 +15,8 @@ public:
     Game();
     void play();
 
+    Item &getItem(std::string basic_string);
+
 private:
     Room& currentRoom()
     {
@@ -26,6 +28,10 @@ private:
     std::string location;
 
     std::map<std::string, std::unique_ptr<Room>> rooms;
+    std::map<std::string, std::unique_ptr<Item>> items;
+
+    std::vector <std::string> storage;
+    double hP = 100;
 };
 
 

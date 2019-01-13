@@ -18,16 +18,18 @@ public:
     Room(std::string id, std::string name, std::string description, std::string items);
 
     const std::string &getId() const;
-    const std::string &getDescription() const;
+    std::string getDescription() const;
 
     void addExit(std::string direction, std::string id);
 
     const std::string go(std::string dir);
+
+    void addItem(std::string item);
 protected:
     std::string id;
     std::string description;
     std::string name;
-    std::vector<Item> items;
+    std::vector<std::string> items;
     std::map<std::string, std::string> map;
 };
 

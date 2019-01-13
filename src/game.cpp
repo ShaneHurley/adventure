@@ -15,14 +15,14 @@
 using namespace std;
 
 Game::Game() {
-    io::CSVReader<5> in("../data/rooms.csv");
+    io::CSVReader<5,io::trim_chars<' ', '\t'>, io::double_quote_escape<',','"'>> in("../data/rooms.csv");
     in.read_header(io::ignore_extra_column, "Id", "Name", "Short Description", "Long Description", "Items");
-    std::string id, name, description, long_description, items;
-    while(in.read_row(id, name, description, long_description, items)) {
-        rooms[id] = std::make_unique<Room>(id, name, description, items);
+    std::string id, name, description, long_description, unused;
+    while(in.read_row(id, name, description, long_description, unused)) {
+        rooms[id] = std::make_unique<Room>(id, name, description, unused);
     }
 
-    io::CSVReader<5> in_map("../data/map.csv");
+    io::CSVReader<5,io::trim_chars<' ', '\t'>, io::double_quote_escape<',','"'>> in_map("../data/map.csv");
     in_map.read_header(io::ignore_extra_column, "Id", "North", "South", "East", "West");
     std::string north, south, east, west;
     while(in_map.read_row(id, north, south, east, west)) {
@@ -42,6 +42,21 @@ Game::Game() {
             rooms[id]->addExit("west", west);
         }
     }
+
+    // item id,item name,description,powers,classification,location
+    io::CSVReader<6,io::trim_chars<' ', '\t'>, io::double_quote_escape<',','"'>> in_item("../data/items.csv");
+    in_item.read_header(io::ignore_extra_column, "item id", "item name", "description", "powers", "classification", "location");
+    std::string powers, classification, location;
+    while(in_item.read_row(id, name, description, powers, classification, location)) {
+        items[id] = std::make_unique<Item>(id, name, description, classification);
+        if (rooms.count(location))
+        {
+            rooms[location]->addItem(id);
+        } else if (location.size() > 0) {
+            cout << "Unable to find room " << location << " for item " << id << endl;
+        }
+    }
+
 }
 
 vector<string> split(const string& string_to_split, const string regex="\\s+") {
@@ -97,7 +112,8 @@ void Game::play() {
     cmd_list["s"] = [&]() { location = currentRoom().go("south"); };
     cmd_list["e"] = [&]() { location = currentRoom().go("east"); };
     cmd_list["w"] = [&]() { location = currentRoom().go("west"); };
-    cmd_list["open"] = [&]() { system("say open"); cout << "OPEN!!!\n"; };
+    cmd_list["use"] = [&]() { system("attack")/* mac only */; cout << "use << <<!!!\n"; };
+    cmd_list["open"] = [&]() { system("say open")/* mac only */; cout << "OPEN!!!\n"; };
     cmd_list["quit"] = [&]() { play = false; };
 
     location = "start";
@@ -107,7 +123,7 @@ void Game::play() {
 
     while (play)
     {
-        cout << "You are in " << location << " what do you want to do?" << endl;
+        cout << "You are in " << currentRoom().getDescription() << " what do you want to do?" << endl;
         getline(cin,line);
 
         cmd = parse_command(line);
@@ -118,4 +134,9 @@ void Game::play() {
             }
         }
     }
+}
+
+Item &Game::getItem(string id)
+{
+    return *items[id];
 }

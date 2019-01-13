@@ -5,9 +5,11 @@
 #include <iostream>
 #include "room.h"
 #include "util.h"
-
+#include "game.h"
 
 using namespace std;
+
+extern Game game;
 
 Room::Room(std::string line)
 {
@@ -36,15 +38,31 @@ const string &Room::getId() const
     return id;
 }
 
-const string &Room::getDescription() const
+string Room::getDescription() const
 {
+    std::string result;
+
     if (description.size())
     {
-        return description;
+        result = description;
     } else
     {
-        return name;
+        result = name;
     }
+
+    if (items.size() > 0) {
+        result += "\nand you can see the following item";
+        if (items.size() > 1) {
+            result += "s";
+        }
+        result += ":";
+    }
+
+    for (auto item : items) {
+        result += game.getItem(item).getDescription() + "\n";
+    }
+
+    return result;
 }
 
 void Room::addExit(std::string direction, std::string id)
@@ -61,4 +79,8 @@ const std::string Room::go(std::string dir)
     {
         return id;
     }
+}
+
+void Room::addItem(std::string item) {
+    items.push_back(item);
 }
