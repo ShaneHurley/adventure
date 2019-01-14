@@ -152,7 +152,7 @@ void Game::drop(string cw, vector<string> cmd) {
 }
 
 void Game::play() {
-    bool play = true;
+    bool play = false;
     vector<string> cmd;
 
     aliases.push_back({ "north", "n" });
@@ -181,7 +181,7 @@ void Game::play() {
         }
     };
 
-    room_cmd_list["sand_dune"]["attack"] = [&]() {
+    room_cmd_list["sand dune"]["attack"] = [&]() {
         if (contains(cmd, "shane")) {
             if (contains(inventory, "butter knife")) {
                 cout << "Shane is vanquished" << endl;
@@ -195,12 +195,31 @@ void Game::play() {
             cout << "Swing into the air with great force hitting... nothing.\n";
         }
     };
+    room_cmd_list["final boss"]["attack"] = [&]() {
+        if (contains(cmd, "boss")) {
+            if (contains(inventory, "great  glaive")) {
+                cout << "boss is vanquished" << endl;
+                currentRoom().setDescription("Taking a deep breath the danger is gone.");
+            } else {
+                cout << "You attack boss, but without a great  glaive you were destine to die." << endl;
+                play = false;
+            }
 
+        } else {
+            cout << "Swing into the air with great force hitting... nothing.\n";
+        }
+    };
     location = "start";
-
+    int a=0;
     string command;
     string line;
-
+    cout<<"***********************************************************************************************\n*********************************** want to play **********************************************\n\t\t\t\t\t\t\t\t    1= yes 2= no\n";
+    cin>>a;
+    if (a==1)
+    {
+        play = true;
+        cout << "\033[2J\033[H";
+    }
     while (play)
     {
         cout << "You are in " << currentRoom().getDescription() << " what do you want to do?" << endl;
@@ -227,6 +246,12 @@ void Game::play() {
 
 
     }
+    cout << "\033[2J\033[H";
+    for (int b=0; b<100; b++)
+    {
+        cout << " Bye loser ";
+    }
+
 }
 
 Item &Game::getItem(string id)

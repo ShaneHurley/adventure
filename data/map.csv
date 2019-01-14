@@ -1,170 +1,170 @@
 Id,North,South,West,East
-forest_easter_egg,,pond,,
-sand_dune,,start,,
-city,,city_2,,city_bank
-city_bank,,city_3,city,city_car_dealer
-city_car_dealer,,city_park,city_bank,city_pizza
-city_pizza,,city_fire_station,city_car_dealer,
-map_room,,rooftop_7,,
-stairs_leading_into_building,,death,,rooftop
-rooftop,,rooftop_8,stairs_leading_into_building,rooftop_2
-rooftop_2,,,rooftop,falls_to_death
-falls_to_death,,,rooftop_2,
-rooftop_3,,rooftop_10,,rooftop_4
-rooftop_4,,rooftop_11,rooftop_3,rooftop_5
-rooftop_5,,,rooftop_4,rooftop_6
-rooftop_6,,rooftop_12,rooftop_5,
-pond,forest_easter_egg,forest,,path_through_forest
-path_through_forest,,,pond,start
-start,sand_dune,mine_enter,path_through_forest,path_to_city
-path_to_city,,city_easter_egg.,start,city_2
-city_2,city,city_entrance_to_mine,path_to_city,city_3
-city_3,city_bank,city_4,city_2,city_park
-city_park,city_car_dealer,city_police_station,city_3,city_fire_station
-city_fire_station,city_pizza,city_drug_cartel,city_park,
-rooftop_7,map_room,rooftop_13,,
-death,stairs_leading_into_building,,,
-rooftop_8,rooftop,rooftop_15,,rooftop_easter_egg
-rooftop_easter_egg,,,rooftop_8,
-rooftop_9,,rooftop_17,,rooftop_10
-rooftop_10,rooftop_3,,rooftop_9,
-rooftop_11,rooftop_4,rooftop_18,,
-rooftop_12,rooftop_6,rooftop_19,,
-forest,pond,forest_2,,
-lantern_shack,,forest_3,,
-mine_enter,start,main_room,,
-city_easter_egg.,path_to_city,,,
-city_entrance_to_mine,city_2,east_mine_2,,
-city_4,city_3,city_5,,city_police_station
-city_police_station,city_park,,city_4,city_drug_cartel
-city_drug_cartel,city_fire_station,final_boss,city_police_station,
-rooftop_13,rooftop_7,,,rooftop_14
-rooftop_14,,,rooftop_13,rooftop_15
-rooftop_15,rooftop_8,stairs_into_building,rooftop_14,rooftop_16
-rooftop_16,,,rooftop_15,rooftop_17
-rooftop_17,rooftop_9,,rooftop_16,
-enter_rooftop_area,,stairs_to_roof,,rooftop_18
-rooftop_18,rooftop_11,,enter_rooftop_area,
-leap_of_faith,,net,,rooftop_19
-rooftop_19,rooftop_12,,leap_of_faith,leap_of_faith_2
-leap_of_faith_2,,death!,rooftop_19,
-forest_2,forest,forest_4,,forest_3
-forest_3,lantern_shack,,forest_2,
-main_room,mine_enter,south_mine,,east_mine
-east_mine,,mine_easter_egg,main_room,east_mine_2
-east_mine_2,city_entrance_to_mine,,east_mine,
-city_5,city_4,city_6,,
-final_boss,city_drug_cartel,credits_room,,
-building,,,,building_2
-building_2,,loot_room,building,stairs_into_building
-stairs_into_building,rooftop_15,building_5,building_2,building_3
-building_3,,building_6,stairs_into_building,building_4
-building_4,,building_7,building_3,
-stairs_to_roof,enter_rooftop_area,skyscraper,,
-epic_loot_room,,,stairs_to_roof,net
-net,leap_of_faith,,epic_loot_room,
-death!,leap_of_faith_2,,,
-forest_4,forest_2,forest_5,,forest_entrance_to_mine
-forest_entrance_to_mine,,,forest_4,south_mine
-south_mine,main_room,creepy_dark_cave,forest_entrance_to_mine,mine_easter_egg
-mine_easter_egg,east_mine,,south_mine,secret_mine_easter_egg
-secret_mine_easter_egg,,,mine_easter_egg,
-city_6,city_5,,,city_loot_building
-city_loot_building,,,city_6,
-credits_room,final_boss,secret_entrance_to_mine,,god_city_area
-god_city_area,,god_city,credits_room,
-loot_room,building_2,,,building_5
-building_5,stairs_into_building,,loot_room,building_6
-building_6,building_3,,building_5,building_7
-building_7,building_4,,building_6,
-skyscraper,stairs_to_roof,god_city_6,,
-forest_5,forest_4,forest_7,,forest_6
-forest_6,,forest_8,,
-creepy_dark_cave,south_mine,mine_4,,mine
-mine,,mine_5,,mine_2
-mine_2,,mine_6,mine,mine_3
-mine_3,,mine_7,mine_2,
-instant_death,,mine_8,,
-secret_entrance_to_mine,credits_room,mine_9,,
-god_city,god_city_area,,,god_city_2
-god_city_2,,,god_city,god_city_3
-god_city_3,,,god_city_2,god_city_4
-god_city_4,,,god_city_3,god_city_5
-god_city_5,,,god_city_4,god_city_6
-god_city_6,skyscraper,god_city_7,god_city_5,
-forest_7,forest_5,forest_9,,forest_8
-forest_8,forest_6,forest_10,forest_7,
-mine_4,creepy_dark_cave,mine_10,,
-mine_5,mine,mine_11,,
-mine_6,mine_2,mine_12,,
-mine_7,mine_3,mine_13,,
-mine_8,instant_death,mine_14,,
-mine_9,secret_entrance_to_mine,mine_15,,god_loot
-god_loot,,,mine_9,
-god_city_7,god_city_6,god_city_8,,
-forest_9,forest_7,forest_11,,forest_10
-forest_10,forest_8,forest_12,forest_9,
-mine_10,mine_4,,,mine_11
-mine_11,mine_5,,mine_10,
-mine_12,mine_6,mini_boss_weak,,
-mine_13,mine_7,,,mine_14
-mine_14,mine_8,mine_19,mine_13,
-mine_15,mine_9,mine_20,,
-god_city_8,god_city_7,god_city_13,,
-forest_11,forest_9,forest_13,,forest_12
-forest_12,forest_10,forest_14,forest_11,
-mine_16,,mine_22,,mine_17
-mine_17,,,mine_16,mini_boss_weak
-mini_boss_weak,mine_12,loot_room_ok,mine_17,mine_18
-mine_18,,worst_stuff_in_game,mini_boss_weak,mine_19
-mine_19,mine_14,mine_23,mine_18,
-mine_20,mine_15,,,mine_21
-mine_21,,mine_24,mine_20,
-god_city_9,,,,god_city_10
-god_city_10,,god_city_14,god_city_9,god_city_11
-god_city_11,,,god_city_10,
-god_city_12,,god_city_16,,god_city_13
-god_city_13,god_city_8,god_city_17,god_city_12,
-forest_13,forest_11,forest_15,,forest_14
-forest_14,forest_12,forest_16,forest_13,
-mine_22,mine_16,mine_25,,
-loot_room_ok,mini_boss_weak,,,
-worst_stuff_in_game,mine_18,,,
-mine_23,mine_19,,,
-good_loot,,,,mine_24
-mine_24,mine_21,mine_28,good_loot,death_2
-death_2,,,mine_24,
-god_city_14,god_city_10,god_city_19,,god_city_15
-god_city_15,,god_city_20,god_city_14,god_city_16
-god_city_16,god_city_12,god_city_21,god_city_15,god_city_17
-god_city_17,god_city_13,god_city_22,god_city_16,
-forest_15,forest_13,forest_17,,forest_16
-forest_16,forest_14,forest_18,forest_15,
-mine_25,mine_22,mine_29,,
-instant_death_2,,mine_31,,
-mine_26,,mine_32,,mini_boss
-mini_boss,,instant_death_3,mine_26,mine_27
-mine_27,,mine_33,mini_boss,
-mine_28,mine_24,mine_34,,
-god_city_18,,city_god_loot,,god_city_19
-god_city_19,god_city_14,,god_city_18,god_city_20
-god_city_20,god_city_15,,god_city_19,god_city_21
-god_city_21,god_city_16,,god_city_20,god_city_22
-god_city_22,god_city_17,,god_city_21,god_city_23
-god_city_23,,,god_city_22,god_city_24
-god_city_24,,,god_city_23,god_city_25
-god_city_25,,god_easter_egg,god_city_24,god_city_26
-god_city_26,,god_city_27,god_city_25,
-forest_17,forest_15,,,forest_18
-forest_18,forest_16,,forest_17,
-mine_29,mine_25,,,mine_30
-mine_30,,,mine_29,mine_31
-mine_31,instant_death_2,,mine_30,mine_32
-mine_32,mine_26,,mine_31,
-instant_death_3,mini_boss,,,
-mine_33,mine_27,,,mine_34
-mine_34,mine_28,,mine_33,
-city_god_loot,god_city_18,,,
-god_easter_egg,god_city_25,,,
-god_city_27,god_city_26,,,god_battle
-god_battle,,,god_city_27,
+forest easter egg,,pond,,
+sand dune,,start,,
+city,,city 2,,city bank
+city bank,,city 3,city,city car dealer
+city car dealer,,city park,city bank,city pizza
+city pizza,,city fire station,city car dealer,
+map room,,rooftop 7,,
+stairs leading into building,,death,,rooftop
+rooftop,,rooftop 8,stairs leading into building,rooftop 2
+rooftop 2,,,rooftop,falls to death
+falls to death,,,rooftop 2,
+rooftop 3,,rooftop 10,,rooftop 4
+rooftop 4,,rooftop 11,rooftop 3,rooftop 5
+rooftop 5,,,rooftop 4,rooftop 6
+rooftop 6,,rooftop 12,rooftop 5,
+pond,forest easter egg,forest,,path through forest
+path through forest,,,pond,start
+start,sand dune,mine enter,path through forest,path to city
+path to city,,city easter egg.,start,city 2
+city 2,city,city entrance to mine,path to city,city 3
+city 3,city bank,city 4,city 2,city park
+city park,city car dealer,city police station,city 3,city fire station
+city fire station,city pizza,city drug cartel,city park,
+rooftop 7,map room,rooftop 13,,
+death,stairs leading into building,,,
+rooftop 8,rooftop,rooftop 15,,rooftop easter egg
+rooftop easter egg,,,rooftop 8,
+rooftop 9,,rooftop 17,,rooftop 10
+rooftop 10,rooftop 3,,rooftop 9,
+rooftop 11,rooftop 4,rooftop 18,,
+rooftop 12,rooftop 6,rooftop 19,,
+forest,pond,forest 2,,
+lantern shack,,forest 3,,
+mine enter,start,main room,,
+city easter egg.,path to city,,,
+city entrance to mine,city 2,east mine 2,,
+city 4,city 3,city 5,,city police station
+city police station,city park,,city 4,city drug cartel
+city drug cartel,city fire station,final boss,city police station,
+rooftop 13,rooftop 7,,,rooftop 14
+rooftop 14,,,rooftop 13,rooftop 15
+rooftop 15,rooftop 8,stairs into building,rooftop 14,rooftop 16
+rooftop 16,,,rooftop 15,rooftop 17
+rooftop 17,rooftop 9,,rooftop 16,
+enter rooftop area,,stairs to roof,,rooftop 18
+rooftop 18,rooftop 11,,enter rooftop area,
+leap of faith,,net,,rooftop 19
+rooftop 19,rooftop 12,,leap of faith,leap of faith 2
+leap of faith 2,,death!,rooftop 19,
+forest 2,forest,forest 4,,forest 3
+forest 3,lantern shack,,forest 2,
+main room,mine enter,south mine,,east mine
+east mine,,mine easter egg,main room,east mine 2
+east mine 2,city entrance to mine,,east mine,
+city 5,city 4,city 6,,
+final boss,city drug cartel,credits room,,
+building,,,,building 2
+building 2,,loot room,building,stairs into building
+stairs into building,rooftop 15,building 5,building 2,building 3
+building 3,,building 6,stairs into building,building 4
+building 4,,building 7,building 3,
+stairs to roof,enter rooftop area,skyscraper,,
+epic loot room,,,stairs to roof,net
+net,leap of faith,,epic loot room,
+death!,leap of faith 2,,,
+forest 4,forest 2,forest 5,,forest entrance to mine
+forest entrance to mine,,,forest 4,south mine
+south mine,main room,creepy dark cave,forest entrance to mine,mine easter egg
+mine easter egg,east mine,,south mine,secret mine easter egg
+secret mine easter egg,,,mine easter egg,
+city 6,city 5,,,city loot building
+city loot building,,,city 6,
+credits room,final boss,secret entrance to mine,,god city area
+god city area,,god city,credits room,
+loot room,building 2,,,building 5
+building 5,stairs into building,,loot room,building 6
+building 6,building 3,,building 5,building 7
+building 7,building 4,,building 6,
+skyscraper,stairs to roof,god city 6,,
+forest 5,forest 4,forest 7,,forest 6
+forest 6,,forest 8,,
+creepy dark cave,south mine,mine 4,,mine
+mine,,mine 5,,mine 2
+mine 2,,mine 6,mine,mine 3
+mine 3,,mine 7,mine 2,
+instant death,,mine 8,,
+secret entrance to mine,credits room,mine 9,,
+god city,god city area,,,god city 2
+god city 2,,,god city,god city 3
+god city 3,,,god city 2,god city 4
+god city 4,,,god city 3,god city 5
+god city 5,,,god city 4,god city 6
+god city 6,skyscraper,god city 7,god city 5,
+forest 7,forest 5,forest 9,,forest 8
+forest 8,forest 6,forest 10,forest 7,
+mine 4,creepy dark cave,mine 10,,
+mine 5,mine,mine 11,,
+mine 6,mine 2,mine 12,,
+mine 7,mine 3,mine 13,,
+mine 8,instant death,mine 14,,
+mine 9,secret entrance to mine,mine 15,,god loot
+god loot,,,mine 9,
+god city 7,god city 6,god city 8,,
+forest 9,forest 7,forest 11,,forest 10
+forest 10,forest 8,forest 12,forest 9,
+mine 10,mine 4,,,mine 11
+mine 11,mine 5,,mine 10,
+mine 12,mine 6,mini boss weak,,
+mine 13,mine 7,,,mine 14
+mine 14,mine 8,mine 19,mine 13,
+mine 15,mine 9,mine 20,,
+god city 8,god city 7,god city 13,,
+forest 11,forest 9,forest 13,,forest 12
+forest 12,forest 10,forest 14,forest 11,
+mine 16,,mine 22,,mine 17
+mine 17,,,mine 16,mini boss weak
+mini boss weak,mine 12,loot room ok,mine 17,mine 18
+mine 18,,worst stuff in game,mini boss weak,mine 19
+mine 19,mine 14,mine 23,mine 18,
+mine 20,mine 15,,,mine 21
+mine 21,,mine 24,mine 20,
+god city 9,,,,god city 10
+god city 10,,god city 14,god city 9,god city 11
+god city 11,,,god city 10,
+god city 12,,god city 16,,god city 13
+god city 13,god city 8,god city 17,god city 12,
+forest 13,forest 11,forest 15,,forest 14
+forest 14,forest 12,forest 16,forest 13,
+mine 22,mine 16,mine 25,,
+loot room ok,mini boss weak,,,
+worst stuff in game,mine 18,,,
+mine 23,mine 19,,,
+good loot,,,,mine 24
+mine 24,mine 21,mine 28,good loot,death 2
+death 2,,,mine 24,
+god city 14,god city 10,god city 19,,god city 15
+god city 15,,god city 20,god city 14,god city 16
+god city 16,god city 12,god city 21,god city 15,god city 17
+god city 17,god city 13,god city 22,god city 16,
+forest 15,forest 13,forest 17,,forest 16
+forest 16,forest 14,forest 18,forest 15,
+mine 25,mine 22,mine 29,,
+instant death 2,,mine 31,,
+mine 26,,mine 32,,mini boss
+mini boss,,instant death 3,mine 26,mine 27
+mine 27,,mine 33,mini boss,
+mine 28,mine 24,mine 34,,
+god city 18,,city god loot,,god city 19
+god city 19,god city 14,,god city 18,god city 20
+god city 20,god city 15,,god city 19,god city 21
+god city 21,god city 16,,god city 20,god city 22
+god city 22,god city 17,,god city 21,god city 23
+god city 23,,,god city 22,god city 24
+god city 24,,,god city 23,god city 25
+god city 25,,god easter egg,god city 24,god city 26
+god city 26,,god city 27,god city 25,
+forest 17,forest 15,,,forest 18
+forest 18,forest 16,,forest 17,
+mine 29,mine 25,,,mine 30
+mine 30,,,mine 29,mine 31
+mine 31,instant death 2,,mine 30,mine 32
+mine 32,mine 26,,mine 31,
+instant death 3,mini boss,,,
+mine 33,mine 27,,,mine 34
+mine 34,mine 28,,mine 33,
+city god loot,god city 18,,,
+god easter egg,god city 25,,,
+god city 27,god city 26,,,god battle
+god battle,,,god city 27,
