@@ -15,12 +15,15 @@ class Room
 {
 public:
     Room(std::string def);
-    Room(std::string id, std::string name, std::string description, std::string items);
+    Room(std::string id, std::string name, std::string description, std::string long_description);
 
     const std::string &getId() const;
     std::string getDescription() const;
+    void setDescription(std::string d) { long_des = d; }
 
     void addExit(std::string direction, std::string id);
+    const std::vector<std::string>& getItems();
+    bool removeItem(std::string item);
 
     const std::string go(std::string dir);
 
@@ -29,6 +32,7 @@ protected:
     std::string id;
     std::string description;
     std::string name;
+    std::string long_des;
     std::vector<std::string> items;
     std::map<std::string, std::string> map;
 };

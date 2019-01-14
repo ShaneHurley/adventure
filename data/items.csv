@@ -1,30 +1,30 @@
 item id,item name,description,powers,classification,location
-butter_knife,butter knife,"small dull knife with a little serration towards the tip. looks great for spreading butter on toast, muffins, and bread, etc.",,weapon,start
-steak_knife,steak knife,sharp knife. good for slicing and stabbing with a black handle,,weapon,
-final_boss_key,final boss key,small gold key in jeweled with diamonds and rubies,,key,
-god_sword,God Sword,long sword with a carbon fiber hilt and a glowing diamond and gold infused blade. Looks great for slicing through your enemies like they're butter.,Burns and poisons enemies after they have been hit. Does 10  fire damage per turn and 10 poison damage per turn. Standard hit does 50 damage. Critical hit does 100 damage. Can be dual-wielded.,weapon,god_loot
+butter knife,butter knife,"small dull knife with a little serration towards the tip. looks great for spreading butter on toast, muffins, and bread, etc.",,weapon,start
+steak knife,steak knife,sharp knife. good for slicing and stabbing with a black handle,,weapon,
+final boss key,final boss key,small gold key in jeweled with diamonds and rubies,,key,
+god sword,God Sword,long sword with a carbon fiber hilt and a glowing diamond and gold infused blade. Looks great for slicing through your enemies like they're butter.,Burns and poisons enemies after they have been hit. Does 10  fire damage per turn and 10 poison damage per turn. Standard hit does 50 damage. Critical hit does 100 damage. Can be dual-wielded.,weapon,god loot
 fist,fist,your first bruised and bare with lots of scraps and scares,,weapon,spawn
-poison_sword,Poison Sword,Standard size sword with a black hilt and a green blade.,,weapon,
-flame_sword,Flame Sword,standard size sword with a red-orange hilt and fire for a blade.,,weapon,
-knight_sword,Knight Sword,a small shine sword with to filits riding the center with a sharp tip,,weapon,pond
-rocket_launcher,Rocket Launcher,Big gun that needs to rest on your shoulder. Has a target locking system.,,weapon,
+poison sword,Poison Sword,Standard size sword with a black hilt and a green blade.,,weapon,
+flame sword,Flame Sword,standard size sword with a red-orange hilt and fire for a blade.,,weapon,
+knight sword,Knight Sword,a small shine sword with to filits riding the center with a sharp tip,,weapon,pond
+rocket launcher,Rocket Launcher,Big gun that needs to rest on your shoulder. Has a target locking system.,,weapon,
 pistol,pistol,black pistol with a black metal handle cold to the touch that is comfortable with a small silver barrel,,weapon,
 lantern,lantern,small lantern with a LED light in it. great for seeing in dark caves,,key,
 pixel,pixel,small pixel like cube reminding you of old video games like adventures key for the first easter egg,,key,
 spoon,spoon,small round spoon 6 inches long with a splintery wood handle like looks like a terrible weapon,,weapon,
-wooden_stick,Wooden Stick,"Brown wooden stick, straight from a tree.",,weapon,
+wooden stick,Wooden Stick,"Brown wooden stick, straight from a tree.",,weapon,
 book,book,small binded book with a cow leather cover,,text,
 leaflet,leaflet,a small leaflet describing the land hint ZORK,,text,start
 bow,bow,a small wooden bow with a small string wrapping them together,,weapon,
-great_ glaive,great glaive,A giant sword that is at least 50 lb and sharp to the touch,,weapon,
+great glaive,great glaive,A giant sword that is at least 50 lb and sharp to the touch,,weapon,
 map,map,small paper with every place in the world,,text,
 shotgun,Shotgun,Pump action shotgun.,,weapon,
 apple,Apple,small red apple,,food,
 orange,Orange,small orange,,food,
 burger,Burger,Burger cheese lettuce tomato and bacon and smells like heaven,,food,
-energy_sword,Energy Sword,Energy Sword from Halo,,weapon,
+energy sword,Energy Sword,Energy Sword from Halo,,weapon,
 cake,Cake,small frosted cake,,food,
 ammo,Ammo,box of bullets,,ammo,
 sledgehammer,Sledgehammer,Sledgehammer with a wooden handle.,,weapon,
-sniper_riffle,Sniper Riffle,"Bolt-action sniper riffle, fires one bullet before needing to be reloaded, deals huge amount of damage if bullet hits target.",,weapon,
-assualt_riffle,Assault Riffle,Standard SCAR.,,weapon,
+sniper rifle,Sniper Rifle,"Bolt-action sniper riffle, fires one bullet before needing to be reloaded, deals huge amount of damage if bullet hits target.",,weapon,
+assualt rifle,Assault Rifle,Standard SCAR.,,weapon,

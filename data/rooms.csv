@@ -1,6 +1,6 @@
 Id,Name,Short Description,Long Description,Items
 forest_easter_egg,Forest easter egg,,There is a familiar looking shack. Shrek appears and you hear All-Star playing in the background.,
-sand_dune,Sand dune,,a arid place with no life and nowhere to go and a sword sticking out of the ground,
+sand_dune,Sand dune,,a arid place with no life and nowhere to go and a sword sticking out of the ground. There is also a young man named Shane here,
 city,City,,"Huge city with lots of broken, smoldering buildings.",
 city_bank,City bank,,there is money lying all around. There is an opened safe.,
 city_car_dealer,City car dealer,,there is lots of rusting cars and flipped over cars.,
@@ -16,7 +16,7 @@ rooftop_5,Rooftop,,The roof of a skyscraper. there are wooden planks leading to 
 rooftop_6,Rooftop,,The roof of a skyscraper. there are wooden planks leading to each rooftop. there are a/c units on most of the roofs that do not work anymore.,
 pond,Pond,,In the middle of the forest is a dried up pond. There are dead fish floating at the surface of the water,
 path_through_forest,Path through forest,,dark dense forest with swaying trees,
-start,Start,,"small ""desert""",
+start,Start,,"You wake up in a land, unfamiliar to you, your ears are ringing, you don’t remember anything that happened. You look around, you see that you are in some kind of “desert”, it looks like a bomb went off. To the North, there are giant sand dunes, you can see nothing past them. To the East, there is a rundown and abandoned city, some of the buildings have small fires in them. To the South, there is a old mine, with a rail leading into it. To the West, there is a smoldering forest, with a dried up pond. You see monsters roaming around nearby.",
 path_to_city,Path to city,,"Huge city with lots of broken, smoldering buildings.",
 city_2,City,,"Huge city with lots of broken, smoldering buildings.",
 city_3,City,,"Huge city with lots of broken, smoldering buildings.",

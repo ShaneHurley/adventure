@@ -19,7 +19,7 @@ Game::Game() {
     in.read_header(io::ignore_extra_column, "Id", "Name", "Short Description", "Long Description", "Items");
     std::string id, name, description, long_description, unused;
     while(in.read_row(id, name, description, long_description, unused)) {
-        rooms[id] = std::make_unique<Room>(id, name, description, unused);
+        rooms[id] = std::make_unique<Room>(id, name, description, long_description);
     }
 
     io::CSVReader<5,io::trim_chars<' ', '\t'>, io::double_quote_escape<',','"'>> in_map("../data/map.csv");
@@ -44,6 +44,7 @@ Game::Game() {
     }
 
     // item id,item name,description,powers,classification,location
+
     io::CSVReader<6,io::trim_chars<' ', '\t'>, io::double_quote_escape<',','"'>> in_item("../data/items.csv");
     in_item.read_header(io::ignore_extra_column, "item id", "item name", "description", "powers", "classification", "location");
     std::string powers, classification, location;
@@ -79,9 +80,26 @@ bool contains(const vector<string>& list, string word) {
     return find(list.cbegin(), list.cend(), word) != list.cend();
 }
 
-vector<string> parse_command(std::string cmd) {
+bool erase(vector<string>& list, string word) {
+    auto before = list.size();
+    list.erase(std::remove(begin(list), end(list), word), end(list));
+    return before != list.size();
+}
+
+vector<string> remove_words(vector<string> cmd, vector<string> words) {
+    vector<string> result;
+    for (auto word : cmd) {
+        if (!contains(words, word)) {
+            result.push_back(word);
+        }
+    }
+    return result;
+}
+
+vector<string> Game::parse_command(std::string cmd) {
     static const vector<string> ignore_words { "a", "of", "the", "by", "carefully", "go" };
-    static const vector<string> join_words { "red", "blue", "rusty", "broken", "glowing", "wooden" };
+    static const vector<string> join_words { "red", "blue", "rusty", "broken", "glowing", "wooden", "butter"};
+
 
     bool joining = false;
     vector<string> result;
@@ -97,24 +115,86 @@ vector<string> parse_command(std::string cmd) {
         }
     }
 
+    // apply aliases
+    for (auto& word : result) {
+        for (auto alias : aliases) {
+            if (word == alias.second) {
+                word = alias.first;
+            }
+        }
+    }
     return result;
+}
+
+void Game::pickup(string cw, vector<string> cmd) {
+    cmd = remove_words(cmd, { cw });
+
+    for (auto item : cmd) {
+        if (currentRoom().removeItem(item)) {
+            inventory.push_back(item);
+            cout << "You have a " << item << endl;
+        } else {
+            cout << "You do not see a " << item << " here." << endl;
+        }
+    }
+}
+
+void Game::drop(string cw, vector<string> cmd) {
+    cmd = remove_words(cmd, { cw });
+    for (auto item : cmd) {
+        if (erase(inventory, item)) {
+            currentRoom().addItem(item);
+            cout << "You drop the " << item << endl;
+        } else {
+            cout << "You do not have a " << item << endl;
+        }
+    }
 }
 
 void Game::play() {
     bool play = true;
     vector<string> cmd;
 
+    aliases.push_back({ "north", "n" });
+    aliases.push_back({ "south", "s" });
+    aliases.push_back({ "east", "e" });
+    aliases.push_back({ "west", "w" });
+    aliases.push_back({ "pickup", "grab" });
+    aliases.push_back({ "pickup", "take" });
+
     cmd_list["north"] = [&]() { location = currentRoom().go("north"); };
     cmd_list["south"] = [&]() { location = currentRoom().go("south"); };
     cmd_list["east"] = [&]() { location = currentRoom().go("east"); };
     cmd_list["west"] = [&]() { location = currentRoom().go("west"); };
-    cmd_list["n"] = [&]() { location = currentRoom().go("north"); };
-    cmd_list["s"] = [&]() { location = currentRoom().go("south"); };
-    cmd_list["e"] = [&]() { location = currentRoom().go("east"); };
-    cmd_list["w"] = [&]() { location = currentRoom().go("west"); };
+    cmd_list["pickup"] = [&]() { pickup("pickup", cmd); };
+    cmd_list["drop"] = [&]() { drop("drop", cmd); };
     cmd_list["use"] = [&]() { system("attack")/* mac only */; cout << "use << <<!!!\n"; };
     cmd_list["open"] = [&]() { system("say open")/* mac only */; cout << "OPEN!!!\n"; };
     cmd_list["quit"] = [&]() { play = false; };
+
+    room_cmd_list["start"]["jump"] = [&]() { cout << "Jump jump\n"; };
+    room_cmd_list["start"]["north"] = [&]() {
+        if (contains(inventory, "butter knife")) {
+            location = currentRoom().go("north");
+        } else {
+            cout << "For some reason you cannot go north right now" << endl;
+        }
+    };
+
+    room_cmd_list["sand_dune"]["attack"] = [&]() {
+        if (contains(cmd, "shane")) {
+            if (contains(inventory, "butter knife")) {
+                cout << "Shane is vanquished" << endl;
+                currentRoom().setDescription("A barren sand dune, that seems a little worse for not having Shane here.");
+            } else {
+                cout << "You attack Shane, but without a butter knife you were destine to fail." << endl;
+                play = false;
+            }
+
+        } else {
+            cout << "Swing into the air with great force hitting... nothing.\n";
+        }
+    };
 
     location = "start";
 
@@ -125,14 +205,27 @@ void Game::play() {
     {
         cout << "You are in " << currentRoom().getDescription() << " what do you want to do?" << endl;
         getline(cin,line);
+        cout << "\033[2J\033[H";
 
+        bool cmd_found = false;
         cmd = parse_command(line);
-        for (auto cmd_word : cmd_list) {
+        for (auto cmd_word : room_cmd_list[location]) {
             if (contains(cmd, cmd_word.first)) {
                 cmd_word.second();
-                break;
+                cmd_found = true;
             }
         }
+
+        if (!cmd_found) {
+            for (auto cmd_word : cmd_list) {
+                if (contains(cmd, cmd_word.first)) {
+                    cmd_word.second();
+                    break;
+                }
+            }
+        }
+
+
     }
 }
 

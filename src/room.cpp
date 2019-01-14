@@ -25,11 +25,12 @@ Room::Room(std::string line)
 
 }
 
-Room::Room(std::string id, std::string name, std::string description, std::string items)
+Room::Room(std::string id, std::string name, std::string description, std::string ld)
 {
     this->id = id;
     this->name = name;
     this->description = description;
+    this->long_des = ld;
     // TODO do something with items
 }
 
@@ -42,7 +43,10 @@ string Room::getDescription() const
 {
     std::string result;
 
-    if (description.size())
+    if (long_des.size())
+    {
+        result = long_des;
+    } else if (description.size())
     {
         result = description;
     } else
@@ -58,6 +62,7 @@ string Room::getDescription() const
         result += ":";
     }
 
+    result += "\n\n";
     for (auto item : items) {
         result += game.getItem(item).getDescription() + "\n";
     }
@@ -83,4 +88,10 @@ const std::string Room::go(std::string dir)
 
 void Room::addItem(std::string item) {
     items.push_back(item);
+}
+
+bool Room::removeItem(std::string item) {
+    auto before = items.size();
+    items.erase(std::remove(begin(items), end(items), item), end(items));
+    return before != items.size();
 }
