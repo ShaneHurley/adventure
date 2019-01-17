@@ -6,12 +6,15 @@
 #include <fstream>
 #include <string>
 #include <regex>
+#include <chrono>
+#include <thread>
+#include <string>
 
 #include "csv.h"
 
 #include "game.h"
 #include "room.h"
-
+void teletype(const std::string& msg);
 using namespace std;
 
 Game::Game() {
@@ -44,6 +47,7 @@ Game::Game() {
     }
 
     // item id,item name,description,powers,classification,location
+    //
 
     io::CSVReader<6,io::trim_chars<' ', '\t'>, io::double_quote_escape<',','"'>> in_item("../data/items.csv");
     in_item.read_header(io::ignore_extra_column, "item id", "item name", "description", "powers", "classification", "location");
@@ -54,11 +58,11 @@ Game::Game() {
         {
             rooms[location]->addItem(id);
         } else if (location.size() > 0) {
-            cout << "Unable to find room " << location << " for item " << id << endl;
+             teletype ( "Unable to find room " + location + " for item " + id + "\n");
         }
     }
 
-}
+}//log
 
 vector<string> split(const string& string_to_split, const string regex="\\s+") {
     std::regex rgx(regex);
@@ -132,21 +136,21 @@ void Game::pickup(string cw, vector<string> cmd) {
     for (auto item : cmd) {
         if (currentRoom().removeItem(item)) {
             inventory.push_back(item);
-            cout << "You have a " << item << endl;
+             teletype ( "You have a " + item + "\n");
         } else {
-            cout << "You do not see a " << item << " here." << endl;
+             teletype ( "You do not see a " + item + " here." );
         }
     }
-}
+}//drop items
 
 void Game::drop(string cw, vector<string> cmd) {
     cmd = remove_words(cmd, { cw });
     for (auto item : cmd) {
         if (erase(inventory, item)) {
             currentRoom().addItem(item);
-            cout << "You drop the " << item << endl;
+             teletype ( "You drop the " + item +"\n");
         } else {
-            cout << "You do not have a " << item << endl;
+            teletype("You do not have a " + item + "\n");
         }
     }
 }
@@ -161,70 +165,100 @@ void Game::play() {
     aliases.push_back({ "west", "w" });
     aliases.push_back({ "pickup", "grab" });
     aliases.push_back({ "pickup", "take" });
-
+    //aliases
     cmd_list["north"] = [&]() { location = currentRoom().go("north"); };
     cmd_list["south"] = [&]() { location = currentRoom().go("south"); };
     cmd_list["east"] = [&]() { location = currentRoom().go("east"); };
     cmd_list["west"] = [&]() { location = currentRoom().go("west"); };
     cmd_list["pickup"] = [&]() { pickup("pickup", cmd); };
     cmd_list["drop"] = [&]() { drop("drop", cmd); };
-    cmd_list["use"] = [&]() { system("attack")/* mac only */; cout << "use << <<!!!\n"; };
-    cmd_list["open"] = [&]() { system("say open")/* mac only */; cout << "OPEN!!!\n"; };
+    cmd_list["use"] = [&]() { system("attack")/* mac only */;  teletype ( "use << <<!!!\n"); };
+    cmd_list["open"] = [&]() { system("say open")/* mac only */;  teletype ( "OPEN!!!\n"); };
     cmd_list["quit"] = [&]() { play = false; };
-
-    room_cmd_list["start"]["jump"] = [&]() { cout << "Jump jump\n"; };
+    //camands
+    room_cmd_list["start"]["jump"] = [&]() {  teletype ( "Jump jump\n"); };
     room_cmd_list["start"]["north"] = [&]() {
         if (contains(inventory, "butter knife")) {
             location = currentRoom().go("north");
         } else {
-            cout << "For some reason you cannot go north right now" << endl;
+             teletype ( "For some reason you cannot go north right now \n");
         }
-    };
-
+    };//keys
+    room_cmd_list["city drug cartel"]["south"] = [&]() {
+        if (contains(inventory, "final boss key")) {
+            location = currentRoom().go("south");
+        } else {
+            teletype ( "For some reason you cannot go south right now looks like you need a key \n");
+        }
+    };//keys
+    room_cmd_list["south mine"]["south"] = [&]() {
+        if (contains(inventory, "lantern")) {
+            location = currentRoom().go("south");
+        } else {
+            teletype ( "For some reason you cannot go south right now looks like you need a lantern to see and get through it \n");
+        }
+    };//keys
     room_cmd_list["sand dune"]["attack"] = [&]() {
         if (contains(cmd, "shane")) {
             if (contains(inventory, "butter knife")) {
-                cout << "Shane is vanquished" << endl;
+                system("say attack");
+                 teletype ( "Shane is vanquished\n");
                 currentRoom().setDescription("A barren sand dune, that seems a little worse for not having Shane here.");
             } else {
-                cout << "You attack Shane, but without a butter knife you were destine to fail." << endl;
+                system("say attack");
+                 teletype ( "You attack Shane, but without a butter knife you were destine to fail\n");
                 play = false;
             }
 
         } else {
-            cout << "Swing into the air with great force hitting... nothing.\n";
+            system("say attack");
+             teletype ( "Swing into the air with great force hitting... nothing.\n");
         }
-    };
+    };//attack
     room_cmd_list["final boss"]["attack"] = [&]() {
         if (contains(cmd, "boss")) {
-            if (contains(inventory, "great  glaive")) {
-                cout << "boss is vanquished" << endl;
-                currentRoom().setDescription("Taking a deep breath the danger is gone.");
+            if (contains(inventory, "great glaive")) {
+                system("attack");
+                 teletype ( "boss is vanquished\n") ;
+                currentRoom().setDescription("Taking a deep breath the danger is gone.\n");
             } else {
-                cout << "You attack boss, but without a great  glaive you were destine to die." << endl;
+                system("attack");
+                 teletype ( "You attack boss, but without a great glaive you were destine to die.\n") ;
                 play = false;
             }
-
+            //
         } else {
-            cout << "Swing into the air with great force hitting... nothing.\n";
+            system("attack");
+             teletype ( "Swing into the air with great force hitting... nothing.\n");
         }
-    };
+    };//attack
     location = "start";
     int a=0;
     string command;
     string line;
-    cout<<"***********************************************************************************************\n*********************************** want to play **********************************************\n\t\t\t\t\t\t\t\t    1= yes 2= no\n";
+    cout<< "\033[2J\033[H" << flush;
+    system("say -r 160 Shall we play a game? &");
+    teletype("Shall we play a game?\n\n");
+
+    cout <<"***********************************************************************************************\n*********************************** want to play **********************************************\n1= nice game of adventure\n2= global thermonuclear war\n\n0= not to play at all\n";
     cin>>a;
+    //start screen
     if (a==1)
     {
         play = true;
-        cout << "\033[2J\033[H";
+         cout<< "\033[2J\033[H";
+        cout << "You wake up in a land, unfamiliar to you, your ears are ringing, you don’t remember anything that happened. You look around, you see that you are in some kind of “desert”, it looks like a bomb went off. To the North, there are giant sand dunes, you can see nothing past them. To the East, there is a rundown and abandoned city, some of the buildings have small fires in them. To the South, there is a old mine, with a rail leading into it. To the West, there is a smoldering forest, with a dried up pond.\n";
     }
+
+    getline(cin,line);  // absorb the enter from the cin above
     while (play)
     {
-        cout << "You are in " << currentRoom().getDescription() << " what do you want to do?" << endl;
+         teletype ( "You are in " + currentRoom().getDescription() + " what do you want to do?\n") ;
+         //description
         getline(cin,line);
-        cout << "\033[2J\033[H";
+        //camands
+
+
 
         bool cmd_found = false;
         cmd = parse_command(line);
@@ -234,27 +268,46 @@ void Game::play() {
                 cmd_found = true;
             }
         }
-
+        cout << "\033[2J\033[H";
         if (!cmd_found) {
             for (auto cmd_word : cmd_list) {
                 if (contains(cmd, cmd_word.first)) {
                     cmd_word.second();
                     break;
+
                 }
             }
         }
 
 
     }
-    cout << "\033[2J\033[H";
-    for (int b=0; b<100; b++)
-    {
-        cout << " Bye loser ";
-    }
+    //main game loop
+     cout <<"\033[2J\033[H";
 
+    if (a != 0)
+    {
+        for (int b = 0; b < 100; b++)
+        {
+            cout << " Bye loser ";
+            //teletype ( " Bye loser ");
+        }
+    } else {
+        system("say -r 170 A strange game the only winning move is to not play.&");
+        teletype("A STRANGE GAME\nTHE ONLY WINNING MOVE IS\nNOT TO PLAY.\n\n");
+    }
+        //end screen
 }
 
 Item &Game::getItem(string id)
 {
     return *items[id];
 }
+//getting items
+
+void teletype(const std::string& msg) {
+    for (auto ch : msg) {
+        std:: cout <<  ch << std::flush;
+        std::this_thread::sleep_for(std::chrono::milliseconds(60));
+        }
+}
+//delay text
